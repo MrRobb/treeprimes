@@ -578,7 +578,7 @@ fn crossover(mom: &mut Polynomial, dad: &mut Polynomial, p_crossover: f64, rng: 
 	}
 }
 
-fn chop(ind: &mut Polynomial, depth: usize, min_const: i128, max_const: i128, rng: &mut StdRng) {
+fn prune(ind: &mut Polynomial, depth: usize, min_const: i128, max_const: i128, rng: &mut StdRng) {
 	ind.tree.chop(depth, min_const, max_const, rng);
 }
 
@@ -661,14 +661,14 @@ fn algorithm(config: &Config) -> Polynomial {
 				);
 
 				// Chop
-				chop(
+				prune(
 					&mut son,
 					config.max_tree_depth,
 					config.min_value,
 					config.max_value,
 					&mut rng[0],
 				);
-				chop(
+				prune(
 					&mut daughter,
 					config.max_tree_depth,
 					config.min_value,
