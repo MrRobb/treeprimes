@@ -1,0 +1,23 @@
+[package]
+name = "treeprimes"
+version = "0.1.0"
+authors = ["Roberto Ariosa <s2002554@ed.ac.uk>"]
+description = "An application to evolve polynomials to fit primes"
+edition = "2018"
+readme = "readme.md"
+
+[dependencies]
+clap = { version = "2.33.0", features = ["yaml", "suggestions"] }
+dot = { version = "0.1.4", optional = true }
+indicatif = {version = "0.13.0", features = ["with_rayon"]}
+itertools = "0.8.1"
+primal = "0.2.3"
+rand = "0.7.2"
+rayon = "1.2.0"
+
+[features]
+graphviz = ["dot"]
+
+[profile.release]
+lto = false
+debug = false

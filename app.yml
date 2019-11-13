@@ -1,0 +1,110 @@
+name: treeprimes
+version: "1.0.0"
+about: An application to evolve polynomials to fit primes
+author: Roberto Ariosa <s2002554@ed.ac.uk>
+
+settings:
+    - AllowNegativeNumbers
+
+args:
+  - generations:
+        help: "max number of generations [default: 100]"
+        short: g
+        long: generations
+        value_name: N_GENERATIONS
+
+  - population:
+        help: number of individuals in a population
+        short: p
+        long: population
+        value_name: N_POPULATION
+        default_value: "1000"
+
+  - crossover:
+        help: probability of crossover
+        short: c
+        long: crossover
+        value_name: P_CROSSOVER
+        default_value: "1.0"
+
+  - mutation:
+        help: probability of mutation
+        short: m
+        long: mutation
+        value_name: P_MUTATION
+        default_value: "0.01"
+
+  - min_depth:
+        help: minimum depth of the tree
+        long: min-depth
+        value_name: MIN_TREE_DEPTH
+        default_value: "3"
+
+  - max_depth:
+        help: maximum depth of the tree
+        long: max-depth
+        value_name: MAX_TREE_DEPTH
+        default_value: "5"
+
+  - target_fitness:
+        help: evolve until target fitness is reached (if generations is specified, it would still be respected)
+        short: t
+        long: target-fitness
+        value_name: FITNESS
+
+  - fitness_function:
+        help: select the fitness function that will be evaluated
+        short: f
+        long: fitness-function
+        value_name: FUNCTION
+        possible_values: [ count, consecutive, interval, scalarisation ]
+        default_value: consecutive
+
+  - max_x:
+        help: the evaluation of the tree is bounded between 0 < x < max_x 
+        long: max-x
+        value_name: MAX_X
+        default_value: "100"
+
+  - min_value:
+        help: minimum value of leaf of the tree
+        long: min-value
+        value_name: MIN
+        default_value: "-100"
+
+  - max_value:
+        help: maximum value of leaf of the tree
+        long: max-value
+        value_name: MAX
+        default_value: "100"
+
+  - rank_size:
+        help: size of the rank stored across all generations
+        short: r
+        long: rank
+        value_name: RANK_SIZE
+        default_value: "10"
+
+  - hide_rank:
+        help: the rank would not be printed (nor calculated)
+        long: hide-rank
+
+  - verbose:
+        help: Use verbose output
+        short: v
+        long: verbose
+
+  - seed:
+        help: seed of the random generator
+        short: s
+        long: seed
+        value_name: SEED
+        default_value: random
+
+subcommands:
+    - eval:
+        args:
+            - input:
+                help: Expression to eval (e.g. "(((x * x) + 29) + (12 + x))")
+                index: 1
+
