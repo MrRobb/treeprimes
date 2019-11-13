@@ -759,6 +759,7 @@ struct Config {
 impl Display for Config {
 	fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
 		writeln!(f, "\nConfiguration of the Algorithm")?;
+		writeln!(f, " * Threads: {}", rayon::current_num_threads())?;
 		writeln!(f, " * Seed: {}", self.seed)?;
 		writeln!(f, " * Population size: {}", self.n_population)?;
 		writeln!(f, " * Depth: [{}, {}]", self.min_tree_depth, self.max_tree_depth)?;
