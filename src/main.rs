@@ -646,22 +646,6 @@ fn algorithm(config: &Config) -> Polynomial {
 				// Crossover
 				crossover(&mut son, &mut daughter, config.p_crossover, &mut rng[0]);
 
-				// Chop
-				chop(
-					&mut son,
-					config.max_tree_depth,
-					config.min_value,
-					config.max_value,
-					&mut rng[0],
-				);
-				chop(
-					&mut daughter,
-					config.max_tree_depth,
-					config.min_value,
-					config.max_value,
-					&mut rng[0],
-				);
-
 				// Mutation
 				mutate(
 					&mut son,
@@ -676,6 +660,22 @@ fn algorithm(config: &Config) -> Polynomial {
 					config.min_value,
 					config.max_value,
 					&mut rng[1],
+				);
+
+				// Chop
+				chop(
+					&mut son,
+					config.max_tree_depth,
+					config.min_value,
+					config.max_value,
+					&mut rng[0],
+				);
+				chop(
+					&mut daughter,
+					config.max_tree_depth,
+					config.min_value,
+					config.max_value,
+					&mut rng[0],
 				);
 
 				vec![son, daughter]
