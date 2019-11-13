@@ -19,5 +19,5 @@ rayon = "1.2.0"
 graphviz = ["dot"]
 
 [profile.release]
-lto = false
+lto = true
 debug = false
