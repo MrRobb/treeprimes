@@ -517,10 +517,8 @@ impl Fitness {
 
 fn fitness1(tree: &Tree, x_max: usize) -> i64 {
 	(0..x_max)
-		.filter(|&x| {
-			let y = tree.eval(x as i128);
-			y > 0 && primal::is_prime(y as u64)
-		})
+		.map(|x| tree.eval(x as i128))
+		.filter(|&y| y > 0 && primal::is_prime(y as u64))
 		.unique()
 		.count() as i64
 }
@@ -534,19 +532,19 @@ fn fitness2(tree: &Tree, x_max: usize) -> i64 {
 }
 
 fn fitness3(tree: &Tree, x_max: usize) -> i64 {
-	let mut f_max = 0;
-	let mut f = 0;
+	let mut f_max = 0_i64;
+	let mut v = vec![];
 	for x in 0..x_max {
 		let y = tree.eval(x as i128);
 		if y > 0 && primal::is_prime(y as u64) {
-			f += 1;
+			v.push(y)
 		}
 		else {
-			f = 0;
+			f_max = f_max.max(v.iter().unique().count() as i64);
+			v.clear();
 		}
-		f_max = f_max.max(f);
 	}
-	f_max
+	f_max.max(v.iter().unique().count() as i64)
 }
 
 fn fitness4(tree: &Tree, x_max: usize) -> i64 {
