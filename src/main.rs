@@ -703,7 +703,7 @@ fn algorithm(config: &Config) -> Polynomial {
 			let personal_best = population.par_iter().max_by_key(|ind| ind.fitness).unwrap();
 
 			progress.println(format!(
-				"Generation: {} -> Personal: {:?} with {} & Global: {:?} with {}",
+				"{},{:?},{},{:?},{}",
 				generation,
 				personal_best.tree.to_string(),
 				personal_best.fitness,
